@@ -1,0 +1,1 @@
+const mainsmajo = 'Main';

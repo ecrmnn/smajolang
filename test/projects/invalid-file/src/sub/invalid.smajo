@@ -1,0 +1,1 @@
+const variableWithoutSmaj0 = 'smajo';
