@@ -42,6 +42,11 @@ yhhhhdhdddhdddddddmddddmmddddmddmmhhddhhhddddhhhhd
 npm install --global smajolang
 ```
 
+### Syntax
+- Identical with JS, but all variables must include the word `smajo`
+E.g. valid names `smajo`, `smajolini`, `kjekkSmajoKul`, `$smajo$`
+E.g. invalid names `name`, `smaj`, `smajs`, `hello`
+
 ### Usage
 - Make new directory
 - Create `.smajorc` JSON file with `rootDir` and `outDir`
