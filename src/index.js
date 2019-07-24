@@ -5,11 +5,12 @@
 'use strict';
 
 const program = require('commander');
-const pckg = require('../package.json');
-const re = require('regex-matches');
 const read = require('fs-readdir-recursive');
 const path = require('path');
 const fs = require('fs-extra');
+const pckg = require('../package.json');
+const File = require('./File');
+const RC = require('./RC');
 
 program.version(pckg.version, '-v, --version');
 
@@ -17,46 +18,29 @@ program
   .command('build')
   .description('transpile project to javascript')
   .action(() => {
-    // Define project root and smajorc path
     const projectRoot = process.cwd();
-    const smajorcPath = path.join(projectRoot, '.smajorc');
 
-    // Check if .smajorc file exists
-    if (!fs.existsSync(smajorcPath)) {
-      console.log('No .smajorc file found. Exiting.');
-      process.exit(1);
-    }
+    const rc = new RC(projectRoot);
+    rc.load();
 
-    // Load .smajorc and @var rootDir and @var outDir
-    const { rootDir, outDir } = JSON.parse(fs.readFileSync(smajorcPath, 'utf-8'));
-
-    read(rootDir)
+    read(rc.getRootDir())
       .filter(relativeFilePath => relativeFilePath.includes('.smajo'))
       .forEach((relativeFilePath) => {
-        const parts = relativeFilePath.split('/');
-        const fileName = parts[parts.length - 1];
-        const absoluteFilePath = path.join(projectRoot, rootDir, relativeFilePath);
-        const absoluteDirectoryJS = path.join(projectRoot, outDir, relativeFilePath).replace(fileName, '');
-        const absoluteFilePathJS = path.join(projectRoot, outDir, relativeFilePath.replace('.smajo', '.js'));
+        const absoluteFilePath = path.join(projectRoot, rc.getRootDir(), relativeFilePath);
 
-        const smajoFileContent = fs.readFileSync(absoluteFilePath, 'utf-8');
+        const file = new File(absoluteFilePath);
 
-        // Get variables
-        const variables = re(/(var|let|const)\s(\S*)\s?(?==)/g, smajoFileContent)
-          .map(match => ({ type: match[1], name: match[2] }));
+        if (file.hasValidVariables()) {
+          // Create directory path to output file
+          const outDirectoryPath = path
+            .join(projectRoot, rc.getOutDir(), relativeFilePath)
+            .replace(file.getFileName(), '');
 
-        const invalidVariable = variables.find(({ name }) => !name.toLowerCase().includes('smajo'));
-        if (invalidVariable) {
-          console.log(`Invalid variable ${invalidVariable.name} found in ${relativeFilePath}. Exiting.`);
-          process.exit(1);
+          fs.mkdirpSync(outDirectoryPath);
+
+          // Save transpiled file
+          file.save(outDirectoryPath);
         }
-
-        if (!fs.existsSync(outDir)) {
-          fs.mkdirSync(outDir);
-        }
-
-        fs.mkdirpSync(absoluteDirectoryJS);
-        fs.writeFileSync(absoluteFilePathJS, smajoFileContent);
       });
   });
 
