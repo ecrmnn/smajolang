@@ -1,6 +1,6 @@
 {
   "name": "smajolang",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An awful compile to JS language",
   "bin": {
     "smajo": "dist/index.js"
