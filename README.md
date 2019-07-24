@@ -8,6 +8,35 @@
 [![prs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![eslint](https://img.shields.io/badge/code_style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 
+```bash
+
+                   /ossyys/.`                      
+                :ydddddhmmmmdh+.                  
+              /hddmmdddmmmmmmmmmdo`               
+            `odmmmmdhhhhyo/:/+sdmdy.              
+            +ddmhsoooo+//:::::/+sdmd`             
+           `mdmyoo+++////////////odm:             
+           .dmhoo+++///////:///+++yd+             
+           .mdyo+++++++//++oosso++ody             
+           :mds+osyyhhysooshhyysso+dd`            
+           oddo+osyydhdyo+shhdhyso+ss`            
+           ooho+ooossyys+//sssso+++o+             
+           .os+++++ooooo+///oo+//++o/             
+            :oo+++++ossoooo+oso+++++.             
+             ../+++osssyyyyyssysoo/               
+               `+oosyysyyyyysyysoo:               
+                :ooooooosssssooso/                
+                o+osooooossooooso                 
+               odoosyysoossssysodo.               
+             :ohdyssssyyyhhhyssdhhyy/-.`          
+        `-+shddhhddysssssyyyyyddyhymhhhys/.`      
+   `-:+yhhddddhhhhddhyyyyyyyhddhhyhmhhdhddhhyo/-` 
+:+syhhddddmdmdhdhhdmddhhhhhhdmdhydhhhydhddhhhhhhyo
+yyhhdhddddmdmdhmdmNmmddddddmmmNdydhhdydhddddhddhhh
+yhhdddhddddddmddmmdmdmNmdhddddmmmmhhdhhhhddddhdhhh
+yhhhhdhdddhdddddddmddddmmddddmddmmhhddhhhddddhhhhd
+```
+
 ### Installation
 ```bash
 npm install --global smajolang
