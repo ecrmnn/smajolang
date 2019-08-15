@@ -72,7 +72,7 @@ describe('Test Suite', () => {
       await build(projectPath);
     } catch (error) {
       expect(error.stdout)
-        .to.contain('Invalid variable variableWithoutSmaj0 found in sub/invalid.smajo. Exiting.');
+        .to.contain('Invalid variable variableWithoutSmaj0 found');
     }
   });
 });

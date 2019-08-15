@@ -28,6 +28,8 @@ program.command('build').description('transpile project to javascript').action(f
 
     var file = new File(absoluteFilePath);
 
+    file.load();
+
     if (file.hasValidVariables()) {
       // Create directory path to output file
       var outDirectoryPath = path.join(projectRoot, rc.getOutDir(), relativeFilePath).replace(file.getFileName(), '');

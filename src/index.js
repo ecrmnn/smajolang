@@ -30,6 +30,8 @@ program
 
         const file = new File(absoluteFilePath);
 
+        file.load();
+
         if (file.hasValidVariables()) {
           // Create directory path to output file
           const outDirectoryPath = path
